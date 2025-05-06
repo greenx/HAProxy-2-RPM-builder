@@ -12,7 +12,7 @@ RELEASE=1
 all: build
 
 install_prereq:
-	yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel sed zlib-devel
+	yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel zlib-devel
 
 clean:
 	rm -f ./SOURCES/haproxy-${VERSION}.tar.gz
