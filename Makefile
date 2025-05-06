@@ -14,9 +14,9 @@ all: build
 
 install_prereq:
 ifeq ($(NO_SUDO),1)
-	yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel wget sed zlib-devel
+	yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel sed zlib-devel
 else
-	sudo yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel wget sed zlib-devel
+	sudo yum install -y pcre-devel make gcc openssl-devel rpm-build systemd-devel sed zlib-devel
 endif
 
 clean:
@@ -42,7 +42,7 @@ endif
 build_lua:
 ifeq ($(NO_SUDO),1)
 	yum install -y readline-devel
-	curl -s https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
+	curl -sOL https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
 	tar xzf lua-${LUA_VERSION}.tar.gz
 	cd lua-${LUA_VERSION}
 	$(MAKE) -C lua-${LUA_VERSION} clean
@@ -50,7 +50,7 @@ ifeq ($(NO_SUDO),1)
 	$(MAKE) -C lua-${LUA_VERSION} install
 else
 	sudo yum install -y readline-devel
-	sudo wget --no-check-certificate https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
+	sudo curl -sOL https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
 	sudo tar xzf lua-${LUA_VERSION}.tar.gz
 	cd lua-${LUA_VERSION}
 	sudo $(MAKE) -C lua-${LUA_VERSION} clean
