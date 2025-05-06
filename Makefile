@@ -4,7 +4,7 @@ LUA_VERSION=5.4.7
 USE_LUA?=0
 NO_SUDO?=0
 USE_PROMETHEUS?=0
-VERSION=$(shell curl -s https://git.haproxy.org/git/haproxy-${MAINVERSION}.git/refs/tags/ | sed -n 's:.*>\(.*\)</a>.*:\1:p' | sed 's/^.//' | sort -rV | head -1)
+VERSION=$(shell curl -sL https://git.haproxy.org/git/haproxy-${MAINVERSION}.git/refs/tags/ | sed -n 's:.*>\(.*\)</a>.*:\1:p' | sed 's/^.//' | sort -rV | head -1)
 ifeq ("${VERSION}","./")
 	VERSION="${MAINVERSION}.0"
 endif
@@ -34,9 +34,9 @@ endif
 
 download-upstream:
 ifeq ($(NO_SUDO),1)
-	curl -s https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
+	curl -sOL https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
 else
-	sudo curl -s https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
+	sudo curl -sOL https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
 endif
 
 build_lua:
