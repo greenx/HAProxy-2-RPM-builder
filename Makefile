@@ -21,7 +21,7 @@ clean:
 	rm -rf ./lua-${LUA_VERSION}*
 
 download-upstream:
-	curl -sOL https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
+	curl -sL https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -o ./SOURCES/haproxy-${VERSION}.tar.gz
 
 build_lua:
 	yum install -y readline-devel
