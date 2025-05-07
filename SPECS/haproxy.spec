@@ -148,7 +148,6 @@ popd
 
 %if 0%{?el7} || 0%{?amzn2} || 0%{?el8} || 0%{?el9}
 %{__install} -s %{name} %{buildroot}%{_sbindir}/
-%{__install} -p -D -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/%{name}.service
 %endif
 
 %clean
